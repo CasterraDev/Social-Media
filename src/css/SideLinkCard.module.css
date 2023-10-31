@@ -18,8 +18,22 @@
     transition: transform 5ms ease-in-out;
 }
 
-.link:hover{
+.link:hover:not(.linkActive){
     transform: scale(1.2);
+    color: var(--PrimaryColor1);
+}
+
+.link:first-of-type{
+    padding-top: .8em;
+}
+
+.link:last-of-type{
+    padding-bottom: .8em;
+}
+
+.linkActive{
+    background-color: var(--PrimaryColor1);
+    color: var(--TextColor1);
 }
 
 .link svg{
