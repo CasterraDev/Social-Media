@@ -1,0 +1,34 @@
+.wrapper{
+    display: flex;
+    gap: .5em;
+    padding: .3em;
+}
+
+
+.postContent{
+    flex-grow: 1;
+}
+
+.postContent textarea{
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.bottomBar{
+    display: flex;
+    gap: 1em;
+}
+
+.infoBtns{
+    display: flex;
+    flex-grow: 1;
+    width: fit-content;
+    gap: .5em;
+}
+
+.infoBtn{
+    width: 1.8em;
+    height: 1.8em;
+    cursor: pointer;
+}

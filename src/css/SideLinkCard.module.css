@@ -1,0 +1,33 @@
+.wrapper{
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    padding: .5em;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-radius: 1rem;
+}
+
+.link{
+    color: black;
+    text-decoration: none;
+    display: flex;
+    padding: .3em 0;
+    padding-left: 2em;
+    gap: .5em;
+    transition: transform 5ms ease-in-out;
+}
+
+.link:hover{
+    transform: scale(1.2);
+}
+
+.link svg{
+    width: 2em;
+    height: 2em;
+    margin: auto 0;
+}
+
+.link p{
+    margin: auto 0;
+}

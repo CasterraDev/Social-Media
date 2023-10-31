@@ -1,0 +1,51 @@
+.wrapper{
+    padding: .5em;
+}
+
+.postHeader{
+    display: flex;
+    gap: .5em;
+}
+
+.username:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.date{
+    font-weight: 300;
+    color: gray;
+    font-size: .8em;
+    text-align: center;
+    height: fit-content;
+    margin: auto 0;
+}
+
+.text{
+    margin: .5em;
+    text-align: left;
+}
+
+.interBtns{
+    display: flex;
+    gap: 2em;
+    padding-left: 2em;
+}
+
+.interBtn{
+    display: flex;
+    text-align: center;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.interBtn svg{
+    margin: auto;
+}
+
+.interBtn p{
+    margin-left: 1em;
+}
