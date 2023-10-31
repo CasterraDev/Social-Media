@@ -1,3 +1,9 @@
+:root{
+    --PrimaryColor1: blue;
+    --SecondaryColor1: light-blue;
+    --TextColor1: white;
+}
+
 *{
     box-sizing: border-box;
 }
@@ -5,4 +11,22 @@
 svg{
     width: 1.8em;
     height: 1.8em;
+}
+
+.wrapper{
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.links{
+    min-width: 25%;
+}
+
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    flex-grow: 1;
 }
