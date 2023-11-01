@@ -1,0 +1,90 @@
+.profileWrapper{
+    padding: 1em;
+    padding-top: 0;
+}
+
+.image{
+    width: 10em;
+    height: 10em;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.image img{
+    width: inherit;
+}
+
+.profileInfo{
+    display: flex;
+}
+
+.header{
+    height: 12em;
+    overflow: hidden;
+    margin-bottom: 1em;
+    border-radius: .5em .5em 0 0;
+}
+
+.info{
+    width: 100%;
+}
+
+.infoTop{
+    display: flex;
+}
+
+.followBtn{
+    margin-left: auto;
+    height: 100%;
+    padding: .1em;
+}
+
+.names{
+    margin-bottom: 1em;
+    flex-grow: 1;
+}
+
+.displayName{
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.username{
+    font-weight: 300;
+    font-size: .9em;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+}
+
+.followStuff{
+    display: flex;
+}
+
+.followStuff p{
+    margin: 0 1em;
+    text-align: center;
+}
+
+.infoBar{
+    display: flex;
+    gap: 1em;
+    height: fit-content;
+    font-size: .9em;
+}
+
+.infoBit{
+    display: flex;
+    gap: .5em;
+}
+
+.infoBit svg{
+    margin: auto;
+}
+
+.infoBit p{
+    margin: auto;
+}

@@ -9,7 +9,7 @@ interface Props {
 export default function PostPage(props: Props) {
     return (
         <Card>
-            <div className={styles.wrapper}>
+            <div className={styles.postWrapper}>
                 <div className={styles.postHeader}>
                     <Avatar />
                     <p className={styles.username}>John Doe</p>
@@ -37,6 +37,16 @@ export default function PostPage(props: Props) {
                         </svg>
                         <p>999</p>
                     </button>
+                </div>
+            </div>
+
+            <div className={styles.commentBar}>
+                <div className={styles.commentHeader}>
+                    <Avatar />
+                    <input className={styles.commentInput} type="text" maxLength={100} />
+                </div>
+                <div className={styles.commentBottom}>
+                    <button id="commentPost">Post</button>
                 </div>
             </div>
         </Card>

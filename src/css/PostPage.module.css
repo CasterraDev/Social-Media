@@ -1,4 +1,4 @@
-.wrapper{
+.postWrapper{
     padding: 1em;
 }
 
@@ -49,3 +49,21 @@
 .interBtn p{
     margin-left: 1em;
 }
+
+.commentBar{
+    padding: 1em;
+}
+
+.commentHeader{
+    display: flex;
+    gap: 1em;
+}
+
+.commentInput{
+    flex-grow: 1;
+}
+
+.commentBottom{
+    margin-top: 1em;
+}
+
