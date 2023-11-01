@@ -1,0 +1,25 @@
+.link{
+    color: black;
+    text-decoration: none;
+    display: flex;
+    padding: .3em 0;
+    padding-left: 2em;
+    padding-bottom: .8em;
+    gap: .5em;
+    transition: transform 5ms ease-in-out;
+}
+
+.link:hover:not(.linkActive){
+    transform: scale(1.2);
+    color: var(--PrimaryColor1);
+}
+
+.link svg{
+    width: 2em;
+    height: 2em;
+    margin: auto 0;
+}
+
+.link p{
+    margin: auto 0;
+}
