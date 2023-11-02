@@ -5,6 +5,17 @@ export type UserType = {
     displayName: string,
     email: string,
     password: string,
+    accessLevel: string,
+    headerPic: string,
+    profilePic: string,
+    followers: Object[],
+    followees: Object[],
+    bioContent: string,
+    bioInfo: {
+        bioBirthdate: string,
+        bioLocation: string,
+        bioJob: string,
+    }
 }
 
 const userSchema = new Schema(
@@ -31,6 +42,36 @@ const userSchema = new Schema(
             type: String,
             required: true,
             default: "User",
+        },
+        headerPic: {
+            type: String,
+        },
+        profilePic: {
+            type: String,
+            //default: "/media/defaultProfilePic.jpg"
+        },
+        followers: {
+            type: [Object],
+            default: []
+        },
+        followees: {
+            type: [Object],
+            default: []
+        },
+        bioContent: {
+            type: String,
+            default: ""
+        },
+        bioInfo: {
+            bioBirthdate: {
+                type: Date,
+            },
+            bioLocation: {
+                type: String,
+            },
+            bioJob: {
+                type: String,
+            }
         }
     },
     { timestamps: true }
