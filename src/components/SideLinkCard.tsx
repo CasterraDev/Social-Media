@@ -9,6 +9,7 @@ import LoginBtn from "./LoginBtn"
 export default async function SideLinkCard() {
     const session = await getServerSession(authOptions);
     console.log("Session: " + session)
+    console.log("SessUser " + session?.user)
     return (
         <Card>
             <Link href="/" className={`${styles.link} ${styles.linkActive}`}>

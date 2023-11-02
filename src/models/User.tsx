@@ -1,5 +1,12 @@
 import mongoose, { Schema, models } from "mongoose";
 
+export type UserType = {
+    username: string,
+    displayName: string,
+    email: string,
+    password: string,
+}
+
 const userSchema = new Schema(
     {
         email: {

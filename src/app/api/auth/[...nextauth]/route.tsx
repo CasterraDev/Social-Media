@@ -1,9 +1,10 @@
-import User from "@/models/User";
+import User, { UserType } from "@/models/User";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs"
 import dbConnect from "@/utils/dbConnect";
+import { AdapterUser } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -26,10 +27,11 @@ export const authOptions: NextAuthOptions = {
                 }
                 console.log("User: ", user);
                 const match = await bcrypt.compare(password, user.password);
-                
-                if (match){
+
+                if (match) {
+                    console.log("Returned User.")
                     return user;
-                }else{
+                } else {
                     return null;
                 }
             }
@@ -41,6 +43,22 @@ export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: "/login",
+    },
+    callbacks: {
+        async jwt({ token, user}) {
+            if (user) {
+                token.user = user;
+            }
+            return token;
+        },
+        async session({ session, token}){
+            if (session?.user) {
+                session.user.username = token.user.username;
+                session.user.displayName = token.user.displayName;
+                session.user.email = token.user.email;
+            }
+            return session;
+        }
     }
 }
 
