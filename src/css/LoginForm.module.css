@@ -1,0 +1,27 @@
+.loginformWrapper{
+    padding: 1em;
+    margin: 1em;
+    margin-top: 0;
+    border: 1px solid black;
+    border-radius: 1em;
+}
+
+.header{
+    text-align: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form input{
+    padding: 1em;
+    height: 3em;
+}
+
+.submit{
+    margin: auto;
+    width: 50%;
+}

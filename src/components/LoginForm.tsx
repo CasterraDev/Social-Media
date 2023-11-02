@@ -30,7 +30,7 @@ export default function LoginForm() {
                 callbackUrl: "http://localhost:3000/",
             })
 
-            if (res?.error){
+            if (res?.error) {
                 console.log(res.error);
                 setError("Invalid Credentials.");
                 return;
@@ -44,17 +44,20 @@ export default function LoginForm() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleForm}>
+        <div className={styles.loginformWrapper}>
+            <h2 className={styles.header}>
+                Login
+            </h2>
+            <form className={styles.form} onSubmit={handleForm}>
                 <input type="text" name="EmailUsername" placeholder="Email or Username" />
                 <input type="password" name="Password" placeholder="Password" />
-                {error && <div className={styles.error}>{error}</div>}
+                <button className={styles.submit} type="submit">
+                    Login
+                </button>
                 <Link href="/register" className={styles.register}>
                     Need an account? Register
                 </Link>
-                <button type="submit">
-                    Login
-                </button>
+                {error && <div className={styles.error}>{error}</div>}
             </form>
         </div>
     )
