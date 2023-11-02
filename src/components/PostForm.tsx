@@ -24,7 +24,7 @@ export default function PostForm() {
                                 </svg>
                             </div>
                         </div>
-                        <button>
+                        <button type="submit" className={styles.submit}>
                         Post
                         </button>
                     </div>

@@ -32,3 +32,16 @@
     height: 1.8em;
     cursor: pointer;
 }
+
+.infoBtn:hover{
+    color: var(--SecondaryColor1);
+}
+
+.submit{
+    border: none;
+    background-color: var(--PrimaryColor1);
+    color: var(--TextColor1);
+    padding: .8em;
+    border-radius: 1em;
+    cursor: pointer;
+}

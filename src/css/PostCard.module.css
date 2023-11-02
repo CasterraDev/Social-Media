@@ -9,6 +9,7 @@
 
 .username:hover{
     text-decoration: underline;
+    text-decoration-color: var(--SecondaryColor1);
     cursor: pointer;
 }
 

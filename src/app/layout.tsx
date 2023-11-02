@@ -20,14 +20,14 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <AuthProvider>
-                <div className="wrapper">
-                    <div className="links">
-                        <SideLinkCard />
+                    <div className="wrapper">
+                        <div className="links">
+                            <SideLinkCard />
+                        </div>
+                        <div className="mainContent">
+                            {children}
+                        </div>
                     </div>
-                    <div className="mainContent">
-                        {children}
-                    </div>
-                </div>
                 </AuthProvider>
             </body>
         </html>
