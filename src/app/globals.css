@@ -17,7 +17,7 @@ svg{
     margin: 1rem;
     display: flex;
     flex-direction: row;
-    gap: 6px;
+    gap: .5em;
 }
 
 .links{
@@ -26,6 +26,7 @@ svg{
 
 .mainContent{
     display: flex;
+    max-width: 40%;
     flex-direction: column;
     gap: 2em;
     flex-grow: 1;

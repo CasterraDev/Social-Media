@@ -9,6 +9,8 @@ export type PostType = {
     sharesCount: Number;
     date: Date;
     hidden: boolean;
+    deleted: boolean;
+    deletedAt: Date;
     hashtags: string[];
     atsUsernames: string[];
 }
@@ -46,6 +48,13 @@ const postSchema = new Schema(
         hidden: {
             type: Boolean,
             default: false
+        },
+        deleted: {
+            type: Boolean,
+            default: false
+        },
+        deletedAt: {
+            type: Date,
         },
         hashtags: {
             type: [String],
