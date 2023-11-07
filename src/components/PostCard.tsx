@@ -1,8 +1,13 @@
+import { PostType } from "@/models/Post";
 import styles from "../css/PostCard.module.css"
 import Avatar from "./Avatar";
 import Card from "./Card";
 
-export default function PostCard() {
+interface PostCardProps{
+    post: PostType
+}
+
+export default function PostCard(props: PostCardProps) {
     return (
         <Card>
             <div className={styles.wrapper}>

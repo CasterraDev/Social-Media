@@ -1,3 +1,9 @@
+.wrapper{
+    max-width: 15em;
+    margin-right: 3em;
+    margin-left: auto;
+}
+
 .link{
     color: black;
     text-decoration: none;
