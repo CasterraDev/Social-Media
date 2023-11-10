@@ -17,5 +17,7 @@ export async function POST(req: NextRequest){
         return NextResponse.json({ user });
     }catch(error){
         console.log(error);
+        return NextResponse.json({ message: "Error Checking User." }, { status: 500 })
     }
+    return NextResponse.json({ message: "Error Checking User." }, { status: 500 })
 }
