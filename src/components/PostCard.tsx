@@ -1,3 +1,4 @@
+"use server"
 import { PostType } from "@/models/Post";
 import styles from "../css/PostCard.module.css"
 import Avatar from "./Avatar";
@@ -48,7 +49,7 @@ export default async function PostCard(props: PostCardProps) {
                 <div className={styles.text}>
                     {props.post.textContent}
                 </div>
-                <InteractionBtns postID={props.post._id} />
+                <InteractionBtns postID={props.post._id} initialLikeState={liked}/>
             </div>
         </Card>
     )
