@@ -7,7 +7,7 @@ export async function POST(req: Request){
     const str: string = data.get("search") as string;
     console.log(str);
     
-    dbConnect();
+    await dbConnect();
 
     if (str == "all"){
         const d = await Post.find({});
