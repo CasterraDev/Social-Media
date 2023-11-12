@@ -1,11 +1,13 @@
-import mongoose, { Schema, models } from "mongoose";
+import mongoose, { Schema, Types, models } from "mongoose";
 
 export type PostType = {
+    _id: Types.ObjectId;
     posterUsername: string;
     textContent: string;
     media: string[];
     likes: Object[];
     comments: Object[];
+    commentsCount: Number;
     sharesCount: Number;
     date: Date;
     hidden: boolean;
@@ -36,6 +38,10 @@ const postSchema = new Schema(
         comments: {
             type: [Object],
             default: []
+        },
+        commentsCount: {
+            type: Number,
+            default: 0
         },
         sharesCount: {
             type: Number,

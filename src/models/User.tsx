@@ -1,6 +1,7 @@
-import mongoose, { Schema, models } from "mongoose";
+import mongoose, { Schema, Types, models } from "mongoose";
 
 export type UserType = {
+    _id: Types.ObjectId;
     username: string,
     displayName: string,
     email: string,

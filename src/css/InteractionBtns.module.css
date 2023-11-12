@@ -1,0 +1,27 @@
+.liked{
+    color: var(--PrimaryColor1)
+}
+
+.interBtns{
+    display: flex;
+    gap: 2em;
+    padding-left: 2em;
+}
+
+.interBtn{
+    display: flex;
+    text-align: center;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.interBtn svg{
+    margin: auto;
+}
+
+.interBtn p{
+    margin-left: 1em;
+}

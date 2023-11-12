@@ -7,6 +7,13 @@
     gap: .5em;
 }
 
+.username{
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+    margin: auto 0;
+}
+
 .username:hover{
     text-decoration: underline;
     text-decoration-color: var(--SecondaryColor1);
@@ -27,26 +34,3 @@
     text-align: left;
 }
 
-.interBtns{
-    display: flex;
-    gap: 2em;
-    padding-left: 2em;
-}
-
-.interBtn{
-    display: flex;
-    text-align: center;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.interBtn svg{
-    margin: auto;
-}
-
-.interBtn p{
-    margin-left: 1em;
-}
