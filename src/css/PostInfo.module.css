@@ -1,0 +1,36 @@
+.wrapper{
+    padding: 1em;
+}
+
+.postHeader{
+    display: flex;
+    gap: .5em;
+}
+
+.username{
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+    margin: auto 0;
+}
+
+.username:hover{
+    text-decoration: underline;
+    text-decoration-color: var(--SecondaryColor1);
+    cursor: pointer;
+}
+
+.date{
+    font-weight: 300;
+    color: gray;
+    font-size: .8em;
+    text-align: center;
+    height: fit-content;
+    margin: auto 0;
+}
+
+.text{
+    margin: .5em;
+    text-align: left;
+}
+
