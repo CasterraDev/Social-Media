@@ -1,0 +1,26 @@
+.commentBar{
+    padding: .5em 1em;
+}
+
+.commentHeader{
+    display: flex;
+    gap: .5em;
+}
+
+.commentInput{
+    flex-grow: 1;
+    margin: .3em 0;
+    border: black solid 1px;
+    text-align: left;
+    padding: .5em;
+}
+
+.commentBtn{
+    border: none;
+    background-color: var(--PrimaryColor1);
+    color: var(--TextColor1);
+    margin: .5em 0;
+    padding: .8em 1em;
+    border-radius: 1em;
+    cursor: pointer;
+}

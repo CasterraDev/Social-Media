@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
                     console.log("Usename")
                     user = await User.findOne({ username: emailUsername });
                 }
-                console.log("User: ", user);
+
                 const match = await bcrypt.compare(password, user.password);
 
                 if (match) {
@@ -52,7 +52,6 @@ export const authOptions: NextAuthOptions = {
             return token;
         },
         async session({ session, token}){
-            console.log(token.user)
             if (session?.user) {
                 session.user.username = token.user.username;
                 session.user._id = token.user._id;

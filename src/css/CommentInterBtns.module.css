@@ -1,0 +1,59 @@
+.liked{
+    color: var(--PrimaryColor1)
+}
+
+.interBtns{
+    display: flex;
+    gap: 2em;
+    padding-left: 2em;
+}
+
+.interBtn{
+    display: flex;
+    text-align: center;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.interBtn svg{
+    margin: auto;
+}
+
+.interBtn p{
+    margin-left: 1em;
+}
+
+.replyWrapper{
+    display: flex;
+    width: 100%;
+    border-radius: 1em;
+    border: black solid 1px;
+    overflow: hidden;
+}
+
+.replyInput{
+    width: 90%;
+    max-width: 90%;
+    padding: .5em;
+    padding-left: 1.5em;
+    border-radius: 1em 0 0 1em;
+    border: black solid 1px;
+    outline: none;
+    user-select: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    resize: vertical;
+    text-align: left;
+}
+
+.replyInput[contenteditable="true"]{
+    -webkit-user-modify: read-write-plaintext-only;
+}
+
+.replyBtn{
+    width: 10%;
+    cursor: pointer;
+}

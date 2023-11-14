@@ -14,8 +14,6 @@ export default function LoginForm() {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
 
-        console.log(data);
-
         try {
             const emailUsername = data.get("EmailUsername");
             const password = data.get("Password");

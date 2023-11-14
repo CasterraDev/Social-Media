@@ -26,7 +26,7 @@ export default function InteractionBtns(props: PropsType) {
         const res = await fetch("/api/toggleLikes", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ postID: props.postID, usernameID: session.user._id}),
+            body: JSON.stringify({ type: "Post", dataID: props.postID, usernameID: session.user._id}),
         })
         const r = await res.json();
         setLikesCnt(r.likesCnt);
