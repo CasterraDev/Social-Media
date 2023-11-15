@@ -7,8 +7,13 @@ import CommentInterBtns from "./CommentInterBtns";
 import { Session, getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-interface CommentCardProps {
+type CommentCardProps = {
     commentInfo: CommentType;
+    postID: Object;
+    commentParents?: Object[];
+    offset?: string;
+    hasChildren?: boolean;
+    isChild?: boolean;
 }
 
 export default async function CommentCard(props: CommentCardProps) {
@@ -28,7 +33,7 @@ export default async function CommentCard(props: CommentCardProps) {
     let initLike = getLikeState();
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} style={{ marginLeft: props.offset }}>
             <div className={styles.commentHeader}>
                 <Link href={`/profile/${props.commentInfo.commenterUsername}`}>
                     <Avatar />
@@ -39,7 +44,7 @@ export default async function CommentCard(props: CommentCardProps) {
             <div className={styles.text}>
                 {props.commentInfo.textContent}
             </div>
-            <CommentInterBtns initialLikeState={initLike} commentID={props.commentInfo._id} interBtnsInfo={{likesCnt: 0, commentsCnt: 0, sharesCnt: 0}}/>
+            <CommentInterBtns postID={props.postID} initialLikeState={initLike} commentID={props.commentInfo._id} commentParents={props.commentParents} interBtnsInfo={{ likesCnt: 0, commentsCnt: 0, sharesCnt: 0 }} />
         </div>
     )
 }

@@ -11,6 +11,8 @@ import { NextResponse } from "next/server";
  * @param data: PostType | CommentType | Object[] (Array of comment ObjectIDs)
  *
  * @param maxComments: number Maximum amount of comments you will get.
+ *
+ * @returns json object with .comments of type CommentType[]
 */
 
 export async function POST(req: Request) {

@@ -5,18 +5,27 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     try {
-        const data = await req.formData();
-        const username = data.get("Username");
-        const commentText = data.get("CommentText");
-        const parentID = data.get("ParentID");
-        const parentType = data.get("ParentType");
+        const data = await req.json();
+        const username = data.Username;
+        const commentText = data.CommentText;
+        const parentID = data.ParentID;
+        const parentType = data.ParentType;
+        const commentParents = data.CommentParents;
+        const postID = data.PostID;
 
         await dbConnect();
         const com: CommentType = await Comment.create({ commenterUsername: username, textContent: commentText })
         if (parentType == "Post") {
-            await Post.findByIdAndUpdate(parentID, { $push: { comments: com._id } })
+            await Post.findByIdAndUpdate(parentID, { $push: { comments: com._id }, $inc: { commentsCount: 1 } })
         } else if (parentType == "Comment") {
+            if (postID == null || postID == undefined) {
+                return NextResponse.json({ message: "Could not make comment reply" }, { status: 305 })
+            }
             await Comment.findByIdAndUpdate(parentID, { $push: { comments: com._id } })
+            console.log("ComParents:");
+            console.log(commentParents);
+            await Comment.updateMany({ _id: { $in: commentParents } }, { $inc: { commentsCount: 1 } });
+            await Post.findByIdAndUpdate(postID, { $inc: { commentsCount: 1 } })
         }
 
         return NextResponse.json({}, { status: 200 })

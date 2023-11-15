@@ -27,10 +27,15 @@ export default function CommentBar(props: CommentBarType) {
         data.append("ParentID", props.postID);
         data.append("ParentType", "Post");
         data.append("CommentText", replyTxtRef.current.innerText);
+
+        let d = {Username: session.user.username, ParentID: props.postID, ParentType: "Post", CommentText: replyTxtRef.current.innerText}
         
         const res = await fetch("/api/createComment", {
             method: "POST",
-            body: data,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(d),
             })
         if (!res.ok){
             //TODO: Set error msg

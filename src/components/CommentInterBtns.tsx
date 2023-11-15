@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 interface CommentInterBtnsProps {
+    postID: Object;
     initialLikeState: boolean;
     commentID: Object;
     interBtnsInfo: {
@@ -12,6 +13,7 @@ interface CommentInterBtnsProps {
         commentsCnt: number;
         sharesCnt: number;
     }
+    commentParents?: Object[];
 }
 
 export default function CommentInterBtns(props: CommentInterBtnsProps) {
@@ -57,10 +59,23 @@ export default function CommentInterBtns(props: CommentInterBtnsProps) {
         data.append("ParentID", props.commentID.toString());
         data.append("ParentType", "Comment");
         data.append("Username", session.user.username);
+        data.append("PostID", props.postID.toString());
+        if (props.commentParents){
+            data.append("CommentParents", props.commentParents.toString());
+        }
+        let d = {CommentText: replyBtnRef.current.innerText, ParentID: props.commentID.toString(), ParentType: "Comment",
+            Username: session.user.username, PostID: props.postID.toString(), CommentParents: props.commentParents}
+        
+        if (props.commentParents){
+            d.CommentParents = props.commentParents;
+        }
 
         const res = await fetch("/api/createComment", {
             method: "POST",
-            body: data,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(d),
         })
 
         if (!res.ok) {
