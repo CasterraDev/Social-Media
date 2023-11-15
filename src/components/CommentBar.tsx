@@ -2,43 +2,37 @@
 import { useRef, useState } from "react"
 import styles from "../css/CommentBar.module.css"
 import Avatar from './Avatar'
-import { CommentType } from "@/models/Comment"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
-interface CommentBarType{
+interface CommentBarType {
     postID: string
 }
 
 export default function CommentBar(props: CommentBarType) {
-    const { data: session, status } = useSession();
-    const [comments, setComments] = useState<CommentType[]>([]);
-    const replyTxtRef = useRef<any>();
+    const { data: session } = useSession();
+    const replyTxtRef = useRef<HTMLDivElement>(null);
+    const [error, setError] = useState<string>();
     const router = useRouter();
 
     const handlePostComment = async (e: any) => {
-        if (session == null){
+        if (session == null || replyTxtRef.current == undefined) {
             return;
         }
         e.preventDefault();
 
-        const data = new FormData(e.currentTarget);
-        data.append("Username", session.user.username);
-        data.append("ParentID", props.postID);
-        data.append("ParentType", "Post");
-        data.append("CommentText", replyTxtRef.current.innerText);
+        let data = { Username: session.user.username, ParentID: props.postID, ParentType: "Post", CommentText: replyTxtRef.current.innerText }
 
-        let d = {Username: session.user.username, ParentID: props.postID, ParentType: "Post", CommentText: replyTxtRef.current.innerText}
-        
         const res = await fetch("/api/createComment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(d),
-            })
-        if (!res.ok){
-            //TODO: Set error msg
+            body: JSON.stringify(data),
+        })
+        if (!res.ok) {
+            const d = await res.json();
+            setError(d.message);
             return;
         }
         replyTxtRef.current.innerText = "";
@@ -53,6 +47,9 @@ export default function CommentBar(props: CommentBarType) {
                     <div ref={replyTxtRef} className={styles.commentInput} role="textbox" spellCheck="true" contentEditable="true" placeholder="Reply" />
                     <button type="submit" className={styles.commentBtn} id="commentPost">Reply</button>
                 </form>
+                {error && 
+                    <div>{error}</div>
+                }
             </div>
         </>
     )

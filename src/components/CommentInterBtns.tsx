@@ -23,6 +23,7 @@ export default function CommentInterBtns(props: CommentInterBtnsProps) {
     const [commentsCnt, setCommentsCnt] = useState<number>(0);
     const [liked, setLiked] = useState<boolean>(props.initialLikeState);
     const [replyShown, setReplyShown] = useState<boolean>(false);
+    const [error, setError] = useState<string>();
 
     const router = useRouter();
 
@@ -31,6 +32,7 @@ export default function CommentInterBtns(props: CommentInterBtnsProps) {
         if (session == null || session?.user._id == undefined) {
             // TODO: Do a login popup
             console.log("You need to be logged in to do that action")
+            setError("You need to be logged in to do that action")
             return;
         }
         const res = await fetch("/api/toggleLikes", {
@@ -51,23 +53,13 @@ export default function CommentInterBtns(props: CommentInterBtnsProps) {
         if (session == null || session?.user._id == undefined) {
             // TODO: Do a login popup
             console.log("You need to be logged in to do that action")
+            setError("You need to be logged in to do that action")
             return;
         }
 
-        const data = new FormData();
-        data.append("CommentText", replyBtnRef.current.innerText);
-        data.append("ParentID", props.commentID.toString());
-        data.append("ParentType", "Comment");
-        data.append("Username", session.user.username);
-        data.append("PostID", props.postID.toString());
-        if (props.commentParents){
-            data.append("CommentParents", props.commentParents.toString());
-        }
-        let d = {CommentText: replyBtnRef.current.innerText, ParentID: props.commentID.toString(), ParentType: "Comment",
-            Username: session.user.username, PostID: props.postID.toString(), CommentParents: props.commentParents}
-        
-        if (props.commentParents){
-            d.CommentParents = props.commentParents;
+        let data = {
+            CommentText: replyBtnRef.current.innerText, ParentID: props.commentID.toString(), ParentType: "Comment",
+            Username: session.user.username, PostID: props.postID.toString(), CommentParents: props.commentParents
         }
 
         const res = await fetch("/api/createComment", {
@@ -75,11 +67,12 @@ export default function CommentInterBtns(props: CommentInterBtnsProps) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(d),
+            body: JSON.stringify(data),
         })
 
         if (!res.ok) {
-            //TODO: Set error msg
+            const d = await res.json();
+            setError(d.message);
             return;
         }
 
@@ -112,6 +105,9 @@ export default function CommentInterBtns(props: CommentInterBtnsProps) {
                     <div ref={replyBtnRef} className={styles.replyInput} role="textbox" spellCheck="true" contentEditable="true" placeholder="Reply" />
                     <button onClick={handleReply} className={styles.replyBtn}>Reply</button>
                 </div>
+            }
+            {error &&
+                <div>{error}</div>
             }
         </div>
     )
