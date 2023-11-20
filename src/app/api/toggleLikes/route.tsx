@@ -1,5 +1,5 @@
 import Comment from "@/models/Comment";
-import Post, { PostType } from "@/models/Post";
+import Post from "@/models/Post";
 import dbConnect from "@/utils/dbConnect";
 import { Types } from "mongoose";
 import { NextResponse } from "next/server";
