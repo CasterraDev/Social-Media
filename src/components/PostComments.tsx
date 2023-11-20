@@ -1,6 +1,7 @@
 import { CommentType } from "@/models/Comment";
 import { PostType } from "@/models/Post"
 import CommentCard from "./CommentCard";
+import { CommentResponse } from "@/types/CommentTypes";
 
 interface PostCommentsProps {
     post: PostType;
@@ -13,12 +14,12 @@ export default async function PostComments(props: PostCommentsProps) {
 
     const getTopComments = async (): Promise<CommentType[]> => {
         const data = { parentType: "Array", data: props.post.comments }
-        const res = await fetch(process.env.URL + "/api/getTopComments", {
+        const res = await fetch(process.env.URL + "/api/getComments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
         })
-        const c = await res.json();
+        const c: CommentResponse = await res.json();
         return c.comments;
     }
 
@@ -28,12 +29,13 @@ export default async function PostComments(props: PostCommentsProps) {
         commentParents.push(cl);
         let num: number = offsetInteration;
         const data = { parentType: "Comment", data: cl }
-        const res = await fetch(process.env.URL + "/api/getTopComments", {
+        const res = await fetch(process.env.URL + "/api/getComments", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
         })
-        const com = await res.json();
+        const com: CommentResponse = await res.json();
+
         await Promise.all(com.comments.map(async (c: CommentType) => {
             commentParents.push(c._id);
             r.push(<CommentCard key={c._id.toString()} postID={props.post._id} commentInfo={c} commentParents={commentParents} offset={num * 3 + "%"} hasChildren={false} isChild={true} />)

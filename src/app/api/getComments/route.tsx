@@ -2,6 +2,7 @@ import Comment, { CommentType } from "@/models/Comment";
 import Post, { PostType } from "@/models/Post";
 import dbConnect from "@/utils/dbConnect";
 import { NextResponse } from "next/server";
+import { CommentRequest, CommentResponse } from "@/types/CommentTypes";
 
 /*
  * @param parentType: string Tells where the data is coming from.
@@ -16,7 +17,7 @@ import { NextResponse } from "next/server";
 */
 
 export async function POST(req: Request) {
-    const data = await req.json();
+    const data: CommentRequest = await req.json();
     await dbConnect();
     let topComment: CommentType | PostType | null;
     let comments: Object[] | undefined;
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
         comments = topComment?.comments;
     } else if (data.parentType == "Array") {
         topComment = null;
-        comments = data.data;
+        comments = data.data as Object[];
     }
 
     if (comments == undefined || comments == null) return NextResponse.json({}, { status: 300 });
@@ -45,5 +46,7 @@ export async function POST(req: Request) {
         }
     }));
 
-    return NextResponse.json({ comments: res })
+    const response: CommentResponse = {comments: res}
+
+    return NextResponse.json(response)
 }
