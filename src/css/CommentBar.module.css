@@ -24,3 +24,7 @@
     border-radius: 1em;
     cursor: pointer;
 }
+
+.commentBtn:hover{
+    background-color: var(--SecondaryColor1);
+}

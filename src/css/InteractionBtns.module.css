@@ -18,10 +18,16 @@
     overflow: hidden;
 }
 
+.interBtn:hover{
+    color: var(--SecondaryColor1);
+}
+
 .interBtn svg{
     margin: auto;
+    color: inherit;
 }
 
 .interBtn p{
     margin-left: 1em;
+    color: inherit;
 }

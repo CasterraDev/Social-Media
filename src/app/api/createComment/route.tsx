@@ -22,8 +22,6 @@ export async function POST(req: Request) {
                 return NextResponse.json({ message: "Could not make comment reply" }, { status: 305 })
             }
             await Comment.findByIdAndUpdate(parentID, { $push: { comments: com._id } })
-            console.log("ComParents:");
-            console.log(commentParents);
             await Comment.updateMany({ _id: { $in: commentParents } }, { $inc: { commentsCount: 1 } });
             await Post.findByIdAndUpdate(postID, { $inc: { commentsCount: 1 } })
         }

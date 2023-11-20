@@ -17,6 +17,10 @@ export type CommentType = {
 
 const commentSchema = new Schema(
     {
+        postID: {
+            type: Object,
+            required: true,
+        },
         commenterUsername: {
             type: String,
             required: true,

@@ -16,14 +16,25 @@
     border: none;
     cursor: pointer;
     overflow: hidden;
+    border: var(--PrimaryColor1) 2px transparent;
+}
+
+.interBtn:hover, .interBtn:focus{
+    color: var(--SecondaryColor1);
+}
+
+.interBtn:focus{
+    border: var(--PrimaryColor1) 2px solid;
 }
 
 .interBtn svg{
     margin: auto;
+    color: inherit;
 }
 
 .interBtn p{
     margin-left: 1em;
+    color: inherit;
 }
 
 .replyWrapper{
@@ -54,6 +65,19 @@
 }
 
 .replyBtn{
+    border: none;
     width: 10%;
+    margin: 0;
+    background-color: var(--PrimaryColor1);
+    color: var(--TextColor1);
     cursor: pointer;
+}
+
+.replyBtn:hover, .replyBtn:focus{
+    background-color: var(--SecondaryColor1);
+}
+
+.replyBtn:focus{
+    border: var(--PrimaryColor1) 2px solid;
+    border-radius: 0 1em 1em 0;
 }
