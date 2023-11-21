@@ -2,11 +2,14 @@
 import styles from "@/css/InteractionBtns.module.css"
 import { Types } from "mongoose"
 import { useSession } from "next-auth/react"
+import Link from "next/link"
 import { useState } from 'react'
 
 interface PropsType {
     postID: Types.ObjectId
     initialLikeState: boolean
+    clickable?: boolean;
+    username?: string;
 }
 
 export default function InteractionBtns(props: PropsType) {
@@ -18,7 +21,7 @@ export default function InteractionBtns(props: PropsType) {
 
     const handleLikes = async (e: any) => {
         e.preventDefault();
-        if (session == null || session?.user._id == undefined){
+        if (session == null || session?.user._id == undefined) {
             // TODO: Do a login popup
             console.log("You need to be logged in to do that action")
             return;
@@ -26,13 +29,13 @@ export default function InteractionBtns(props: PropsType) {
         const res = await fetch("/api/toggleLikes", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ type: "Post", dataID: props.postID, usernameID: session.user._id}),
+            body: JSON.stringify({ type: "Post", dataID: props.postID, usernameID: session.user._id }),
         })
         const r = await res.json();
         setLikesCnt(r.likesCnt);
-        if (r.result == "liked"){
+        if (r.result == "liked") {
             setLiked(true);
-        }else{
+        } else {
             setLiked(false);
         }
     }
@@ -57,6 +60,8 @@ export default function InteractionBtns(props: PropsType) {
                 </svg>
                 <p>{sharesCnt}</p>
             </button>
+
+            {props.clickable != undefined ? <Link href={`/post/${props.postID}`} className={styles.linkFiller} tabIndex={-1} /> : <></>}
         </div>
     )
 }

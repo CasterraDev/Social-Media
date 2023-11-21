@@ -1,4 +1,3 @@
-"use server"
 import { PostType } from "@/models/Post";
 import { padStrLeft } from "@/utils/string"
 import styles from "../css/PostInfo.module.css"
@@ -11,6 +10,7 @@ import { seeIfLiked } from "@/utils/dbUtils";
 
 interface PostCardProps {
     post: PostType;
+    clickable?: boolean;
 }
 
 export default async function PostInfo(props: PostCardProps) {
@@ -30,11 +30,23 @@ export default async function PostInfo(props: PostCardProps) {
                 </Link>
                 <Link href={`/profile/${props.post.posterUsername}`} className={styles.username}>{props.post.posterUsername}</Link>
                 <p className={styles.date}>{formattedDate}</p>
+                {props.clickable ?? false ? <Link href={`/profile/${props.post.posterUsername}`} className={styles.linkFiller} tabIndex={-1}/> : <></> }
             </div>
-            <div className={styles.text}>
-                {props.post.textContent}
-            </div>
-            <InteractionBtns postID={props.post._id} initialLikeState={liked} />
+            {props.clickable ?? false ?
+                <Link href={`/post/${props.post._id}`} className="stealth">
+                    <div className={styles.text}>
+                        {props.post.textContent}
+                    </div>
+                </Link>
+                :
+                <div className="stealth">
+                    <div className={styles.text}>
+                        {props.post.textContent}
+                    </div>
+                </div>
+            }
+
+            <InteractionBtns postID={props.post._id} initialLikeState={liked} clickable={props.clickable ?? false} />
         </div>
     )
 }
