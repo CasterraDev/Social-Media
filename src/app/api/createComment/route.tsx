@@ -14,12 +14,12 @@ export async function POST(req: Request) {
         const postID = data.PostID;
 
         await dbConnect();
-        const com: CommentType = await Comment.create({ commenterUsername: username, textContent: commentText })
+        const com: CommentType = await Comment.create({ postID: postID, commenterUsername: username, textContent: commentText })
         if (parentType == "Post") {
             await Post.findByIdAndUpdate(parentID, { $push: { comments: com._id }, $inc: { commentsCount: 1 } })
         } else if (parentType == "Comment") {
             if (postID == null || postID == undefined) {
-                return NextResponse.json({ message: "Could not make comment reply" }, { status: 305 })
+                return NextResponse.json({ message: "Could not make comment reply" }, { status: 605 })
             }
             await Comment.findByIdAndUpdate(parentID, { $push: { comments: com._id } })
             await Comment.updateMany({ _id: { $in: commentParents } }, { $inc: { commentsCount: 1 } });
