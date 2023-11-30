@@ -10,7 +10,7 @@ interface Props {
 
 export default function PostForm(props: Props) {
 
-    const textRef: RefObject<HTMLTextAreaElement> = useRef<HTMLTextAreaElement>() as RefObject<HTMLTextAreaElement>;
+    const textRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>() as RefObject<HTMLDivElement>;
     const mediaRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>() as RefObject<HTMLInputElement>;
     {/* const locationRef = useRef<HTMLInputElement>() as RefObject<HTMLInputElement>; */ }
 
@@ -26,19 +26,18 @@ export default function PostForm(props: Props) {
         for (let i = 0; i < files.length; i++) {
             data.append("media[]", files[i])
         }
-        data.append("text", textRef.current?.value as string);
+        data.append("text", textRef.current?.innerText as string);
         data.append("username", props.username);
 
         const res: Response = await fetch("/api/createPost", {
             method: "POST",
             body: data,
         })
-        const d = await res.json();
-        if (!d.success) {
+        if (!res.ok) {
             throw "CreatePost Failed";
         }
 
-        textRef.current.value = "";
+        textRef.current.innerText = "";
         mediaRef.current.files = null;
     }
 
@@ -57,7 +56,7 @@ export default function PostForm(props: Props) {
                     <Avatar />
                 </div>
                 <form onSubmit={handleSubmit} className={styles.postContent}>
-                    <textarea ref={textRef} placeholder="What to Post" />
+                    <div ref={textRef} className={styles.postInput} role="textbox" spellCheck="true" contentEditable="true" placeholder="Reply" />
                     <div className={styles.bottomBar}>
                         <div className={styles.infoBtns}>
                             <div onClick={handleFileUpload} className={styles.infoBtn}>

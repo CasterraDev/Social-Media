@@ -12,7 +12,7 @@ export default async function HomePosts() {
         });
 
         if (!res.ok) {
-            throw "ERROR: Searchposts failed.";
+            throw "Searchposts failed.";
         }
 
         const data = await res.json();

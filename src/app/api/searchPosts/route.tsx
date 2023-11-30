@@ -11,8 +11,8 @@ export async function POST(req: Request){
 
     if (str == "all"){
         const d = await Post.find({});
-        return NextResponse.json({posts: d})
+        return NextResponse.json({posts: d}, {status: 200})
     }
 
-    return NextResponse.json({success: false});
+    return NextResponse.json({}, {status: 603});
 }

@@ -1,3 +1,4 @@
+import ProfileBtn from "@/components/ProfileBtn"
 import styles from "@/css/Profile.module.css"
 
 export default function Profile({ params }: { params: { userID: string } }) {
@@ -20,9 +21,7 @@ export default function Profile({ params }: { params: { userID: string } }) {
                             <div className={styles.displayName}>John Doe</div>
                             <div className={styles.username}>@JohnDoe</div>
                         </div>
-                        <div className={styles.followBtn}>
-                            <button>Follow</button>
-                        </div>
+                        <ProfileBtn userID={params.userID}/>
                     </div>
                     <div className={styles.followStuff}>
                         <div className={styles.followers}>
@@ -62,7 +61,6 @@ export default function Profile({ params }: { params: { userID: string } }) {
                 </div>
             </div>
             <div className={styles.posts}>
-
             </div>
         </div>
     )

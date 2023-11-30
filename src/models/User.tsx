@@ -7,7 +7,7 @@ export type UserType = {
     email: string,
     password: string,
     accessLevel: string,
-    headerPic: string,
+    coverPic: string,
     profilePic: string,
     followers: Object[],
     followees: Object[],
@@ -44,7 +44,7 @@ const userSchema = new Schema(
             required: true,
             default: "User",
         },
-        headerPic: {
+        coverPic: {
             type: String,
         },
         profilePic: {
@@ -64,14 +64,17 @@ const userSchema = new Schema(
             default: ""
         },
         bioInfo: {
+            type: Object,
             bioBirthdate: {
                 type: Date,
             },
             bioLocation: {
                 type: String,
+                default: "",
             },
             bioJob: {
                 type: String,
+                default: "",
             }
         }
     },

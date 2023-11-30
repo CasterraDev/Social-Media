@@ -1,6 +1,7 @@
 :root{
     --PrimaryColor1: blue;
     --SecondaryColor1: rgb(0, 145, 232);
+    --BackgroundColor1: white;
     --TextColor1: white;
 }
 
@@ -12,6 +13,15 @@ a{
     text-decoration: none;
 }
 
+hr{
+    color: black;
+    background-color: black;
+    height: 5px;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
 svg{
     width: 1.8em;
     height: 1.8em;
@@ -20,6 +30,27 @@ svg{
 .stealth{
     text-decoration: none;
     color: inherit;
+}
+
+.stealthBtn{
+    text-decoration: none;
+    color: inherit;
+    background: none;
+    border: none;
+}
+
+.siteBtn{
+    text-decoration: none;
+    color: var(--PrimaryColor1);
+    border-color: var(--PrimaryColor1);
+    border-radius: 1em;
+    padding: .5em;
+}
+
+.siteBtn:hover{
+    cursor: pointer;
+    color: var(--TextColor1);
+    background-color: var(--PrimaryColor1);
 }
 
 .wrapper{

@@ -1,36 +1,26 @@
 import { UserType } from "@/models/User";
 import { Types } from "mongoose";
 import { DefaultSession, DefaultUser } from "next-auth";
+import { AdapterUser } from "next-auth/adapters";
 import { JWT, DefaultJWT } from "next-auth/jwt"
+
+type UserDefaultType = {
+
+} & UserType & DefaultUser
 
 declare module "next-auth" {
     interface Session extends DefaultSession {
         user: {
-            username: string,
-            _id: Types.ObjectId,
-            displayName: string,
-            email: string,
-            password: string,
-        } & DefaultSession
+        } & UserType & DefaultSession
     }
 
-    interface User extends DefaultUser {
-        username: string,
-        _id: Types.ObjectId,
-        displayName: string,
-        email: string,
-        password: string,
+    interface User extends UserDefaultType {
     }
 }
 
 declare module "next-auth/jwt" {
     interface JWT extends DefaultJWT {
         user: {
-            username: string,
-            _id: Types.ObjectId,
-            displayName: string,
-            email: string,
-            password: string,
-        }
+        } & UserType | AdapterUser | User
     }
 }

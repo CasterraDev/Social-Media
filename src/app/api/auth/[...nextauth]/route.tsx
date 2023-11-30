@@ -45,18 +45,17 @@ export const authOptions: NextAuthOptions = {
         signIn: "/login",
     },
     callbacks: {
-        async jwt({ token, user}) {
+        async jwt({ token, user }) {
             if (user) {
                 token.user = user;
             }
             return token;
         },
-        async session({ session, token}){
-            if (session?.user) {
-                session.user.username = token.user.username;
-                session.user._id = token.user._id;
-                session.user.displayName = token.user.displayName;
-                session.user.email = token.user.email;
+        async session({ session, token }) {
+            if (token.user._id) {
+                const user = await User.findOne({ _id: token.user._id });
+                session.user = user;
+                session.user.password = "";
             }
             return session;
         }

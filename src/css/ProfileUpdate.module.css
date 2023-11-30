@@ -1,0 +1,55 @@
+.profileUpdateWrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--BackgroundColor1);
+    border: black solid 1px;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1em;
+    width: 60em;
+    margin: 1em auto;
+}
+
+.bioInfo{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bioInfo label{
+    margin-right: .4em;
+}
+
+.topMargin{
+    margin-top: 1em;
+}
+
+.rightMargin{
+    margin-right: 1em;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+}
+
+.header h2{
+    flex-grow: 1;
+    text-transform: uppercase;
+}
+
+.xBtn{
+    cursor: pointer;
+}
+
+.xBtn svg {
+    width: 4em;
+    height: auto;
+}
