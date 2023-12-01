@@ -9,8 +9,6 @@ interface ProfileBtnProps {
 
 export default async function ProfileBtn(props: ProfileBtnProps) {
     const session = await getServerSession(authOptions)
-    console.log(session?.user.username)
-    console.log(props.userID)
     return (
         <div>{session?.user.username == props.userID ? <EditProfileBtn /> : <button className="siteBtn">Follow</button>}</div>
     )

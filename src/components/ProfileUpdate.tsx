@@ -96,7 +96,9 @@ export default function ProfileUpdate(props: ProfileUpdateProps) {
         displayNameRef.current.value = session.user.displayName;
         bioRef.current.value = session.user.bioContent;
         if (session.user.bioInfo?.bioBirthdate) {
-            birthdateRef.current.value = session.user.bioInfo.bioBirthdate;
+            const bd: Date = new Date(session.user.bioInfo.bioBirthdate);
+            const date: string = bd.getFullYear() + "-" + bd.getMonth() + "-" + bd.getDate();
+            birthdateRef.current.value = date;
         }
         if (session.user.bioInfo?.bioLocation) {
             locationRef.current.value = session.user.bioInfo?.bioLocation;
