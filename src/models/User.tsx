@@ -13,7 +13,7 @@ export type UserType = {
     followees: Object[],
     bioContent: string,
     bioInfo: {
-        bioBirthdate: string,
+        bioBirthdate: Date,
         bioLocation: string,
         bioJob: string,
     }
@@ -64,7 +64,6 @@ const userSchema = new Schema(
             default: ""
         },
         bioInfo: {
-            type: Object,
             bioBirthdate: {
                 type: Date,
             },

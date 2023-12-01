@@ -2,10 +2,6 @@ import User from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 import { NextResponse } from "next/server";
 
-interface DynamicObject {
-    [key: string]: any
-}
-
 export async function POST(req: Request){
     const data = await req.formData();
     console.log(data);
@@ -32,7 +28,7 @@ export async function POST(req: Request){
     let bioChanges: DynamicObject = {};
 
     if (birthdate){
-        bioChanges.bioBirthdate = birthdate;
+        bioChanges.bioBirthdate = new Date(birthdate.toString());
     }
     if (location){
         bioChanges.bioLocation = location;
