@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
         await dbConnect();
         await Post.create({posterUsername: un, textContent: content})
 
-        return NextResponse.json({ success: true })
+        return NextResponse.json({}, {status: 200})
     } catch(error) {
-        return NextResponse.json({ success: false, message: error })
+        return NextResponse.json({ message: error }, {status: 604 });
     }
 }

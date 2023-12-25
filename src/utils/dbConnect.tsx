@@ -7,7 +7,7 @@ interface dbConnection{
 const connection: dbConnection = {isConnected:0};
 
 async function dbConnect() {
-    if (connection.isConnected){
+    if (connection.isConnected == 1){
         return;
     }
 
