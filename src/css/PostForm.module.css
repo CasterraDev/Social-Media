@@ -8,10 +8,13 @@
     flex-grow: 1;
 }
 
-.postContent textarea{
+.postInput{
     width: 100%;
     padding: 1em;
     margin-bottom: 1em;
+    border: 1px solid;
+    border-radius: 10px;
+    text-align: left;
 }
 
 .bottomBar{

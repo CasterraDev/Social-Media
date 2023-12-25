@@ -27,6 +27,12 @@ svg{
     height: 1.8em;
 }
 
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    pointer-events: none;
+    display: block; /* For Firefox */
+}
+
 .stealth{
     text-decoration: none;
     color: inherit;

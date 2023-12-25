@@ -56,7 +56,7 @@ export default function PostForm(props: Props) {
                     <Avatar />
                 </div>
                 <form onSubmit={handleSubmit} className={styles.postContent}>
-                    <div ref={textRef} className={styles.postInput} role="textbox" spellCheck="true" contentEditable="true" placeholder="Reply" />
+                    <div ref={textRef} className={styles.postInput} role="textbox" spellCheck="true" contentEditable="true" placeholder="What ya thinking?" />
                     <div className={styles.bottomBar}>
                         <div className={styles.infoBtns}>
                             <div onClick={handleFileUpload} className={styles.infoBtn}>
